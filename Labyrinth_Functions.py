@@ -39,7 +39,7 @@ def get_tile_coordinates(row, col):#Function which takes in column and row and r
 				#print(coords)
 				return(coords)
 
-def grab_and_place_arrows(display, TILE_ARRAY, floatingTile):#Function which grabs images of arrows and puts them in positions around board
+def grab_and_place_arrows(display, TILE_ARRAY, floatingTile, player):#Function which grabs images of arrows and puts them in positions around board
 	mouse = pygame.mouse.get_pos()#Stores position of mouse	
 	click = pygame.mouse.get_pressed()
 
@@ -56,84 +56,84 @@ def grab_and_place_arrows(display, TILE_ARRAY, floatingTile):#Function which gra
 	if 400 + 100 > mouse[0] > 400 and 0 + 100 > mouse[1] > 20:#If mouse hovers, then changes image
 		display.blit(arrowDownAC, (435, 70))
 		if click[0] == 1:
-			tile_insertion(TILE_ARRAY, floatingTile, 0, 1)
+			tile_insertion(TILE_ARRAY, floatingTile, 0, 1, player, display)
 	else:
 		display.blit(arrowDownIC, (435, 35))
 
 	if 600 + 100 > mouse[0] > 600 and 0 + 100 > mouse[1] > 20:
 		display.blit(arrowDownAC, (635, 70))
 		if click[0] == 1:
-			tile_insertion(TILE_ARRAY, floatingTile, 0, 3)
+			tile_insertion(TILE_ARRAY, floatingTile, 0, 3, player, display)
 	else:
 		display.blit(arrowDownIC, (635, 35))
 
 	if 800 + 100 > mouse[0] > 800 and 0 + 100 > mouse[1] > 20:
 		display.blit(arrowDownAC, (835, 70))
 		if click[0] == 1:
-			tile_insertion(TILE_ARRAY, floatingTile, 0, 5)
+			tile_insertion(TILE_ARRAY, floatingTile, 0, 5, player, display)
 	else:
 		display.blit(arrowDownIC, (835, 35))
 
 	if 400 + 100 > mouse[0] > 400 and 780 + 100 > mouse[1] > 800:
 		display.blit(arrowUPAC, (435, 800))
 		if click[0] == 1:
-			tile_insertion(TILE_ARRAY, floatingTile, 6, 1)
+			tile_insertion(TILE_ARRAY, floatingTile, 6, 1, player, display)
 	else:
 		display.blit(arrowUPIC, (435, 835))
 
 	if 600 + 100 > mouse[0] > 600 and 780 + 100 > mouse[1] > 800:
 		display.blit(arrowUPAC, (635, 800))
 		if click[0] == 1:
-			tile_insertion(TILE_ARRAY, floatingTile, 6, 3)
+			tile_insertion(TILE_ARRAY, floatingTile, 6, 3, player, display)
 	else:
 		display.blit(arrowUPIC, (635, 835))
 
 	if 800 + 100 > mouse[0] > 800 and 780 + 100 > mouse[1] > 800:
 		display.blit(arrowUPAC, (835, 800))
 		if click[0] == 1:
-			tile_insertion(TILE_ARRAY, floatingTile, 6, 5)
+			tile_insertion(TILE_ARRAY, floatingTile, 6, 5, player, display)
 	else:
 		display.blit(arrowUPIC, (835, 835))
 
 	if 200 + 100 > mouse[0] > 220 and 200 + 100 > mouse[1] > 200:
 		display.blit(arrowRightAC, (273, 235))
 		if click[0] == 1:
-			tile_insertion(TILE_ARRAY, floatingTile, 1, 0)
+			tile_insertion(TILE_ARRAY, floatingTile, 1, 0, player, display)
 	else:
 		display.blit(arrowRightIC, (238, 235))
 
 	if 200 + 100 > mouse[0] > 220 and 400 + 100 > mouse[1] > 400:
 		display.blit(arrowRightAC, (273, 435))
 		if click[0] == 1:
-			tile_insertion(TILE_ARRAY, floatingTile, 3, 0)
+			tile_insertion(TILE_ARRAY, floatingTile, 3, 0, player, display)
 	else:
 		display.blit(arrowRightIC, (238, 435))
 
 	if 200 + 100 > mouse[0] > 220 and 600 + 100 > mouse[1] > 600:
 		display.blit(arrowRightAC, (273, 635))
 		if click[0] == 1:
-			tile_insertion(TILE_ARRAY, floatingTile, 5, 0)
+			tile_insertion(TILE_ARRAY, floatingTile, 5, 0, player, display)
 	else:
 		display.blit(arrowRightIC, (238, 635))
 
 	if 980 + 100 > mouse[0] > 1000 and 200 + 100 > mouse[1] > 200:
 		display.blit(arrowLeftAC, (998, 235))
 		if click[0] == 1:
-			tile_insertion(TILE_ARRAY, floatingTile, 1, 6)
+			tile_insertion(TILE_ARRAY, floatingTile, 1, 6, player, display)
 	else:
 		display.blit(arrowLeftIC, (1033, 235))
 
 	if 980 + 100 > mouse[0] > 1000 and 400 + 100 > mouse[1] > 400:
 		display.blit(arrowLeftAC, (998, 435))
 		if click[0] == 1:
-			tile_insertion(TILE_ARRAY, floatingTile, 3, 6)
+			tile_insertion(TILE_ARRAY, floatingTile, 3, 6, player, display)
 	else:
 		display.blit(arrowLeftIC, (1033, 435))
 
 	if 980 + 100 > mouse[0] > 1000 and 600 + 100 > mouse[1] > 600:
 		display.blit(arrowLeftAC, (998, 635))
 		if click[0] == 1:
-			tile_insertion(TILE_ARRAY, floatingTile, 5, 6)
+			tile_insertion(TILE_ARRAY, floatingTile, 5, 6, player, display)
 	else:
 		display.blit(arrowLeftIC, (1033, 635))
 
@@ -189,108 +189,112 @@ def rotate_tile_clockwise(tile):
 	tile.south = tile.east
 	tile.east = tilevalue
 
-def tile_insertion(TILE_ARRAY, floatingTile, row, col):#row and col of location where tile is being inserted
+def tile_insertion(TILE_ARRAY, floatingTile, row, col, player, display):#row and col of location where tile is being inserted
 	tempTile = [0]
-	if row == 0:
-		tempTile[0] = floatingTile[0]
-		floatingTile[0] = TILE_ARRAY[6][col]#I may want to clear the floatingTile's currentrow and currentcolumn here if it become a problem
-		TILE_ARRAY[6][col] = TILE_ARRAY[5][col]
-		TILE_ARRAY[6][col].currentrow = 6
-		TILE_ARRAY[6][col].currentcolumn = col
-		TILE_ARRAY[5][col] = TILE_ARRAY[4][col]
-		TILE_ARRAY[5][col].currentrow = 5
-		TILE_ARRAY[5][col].currentcolumn = col
-		TILE_ARRAY[4][col] = TILE_ARRAY[3][col]
-		TILE_ARRAY[4][col].currentrow = 4
-		TILE_ARRAY[4][col].currentcolumn = col
-		TILE_ARRAY[3][col] = TILE_ARRAY[2][col]
-		TILE_ARRAY[3][col].currentrow = 3
-		TILE_ARRAY[3][col].currentcolumn = col
-		TILE_ARRAY[2][col] = TILE_ARRAY[1][col]
-		TILE_ARRAY[2][col].currentrow = 2
-		TILE_ARRAY[2][col].currentcolumn = col
-		TILE_ARRAY[1][col] = TILE_ARRAY[0][col]
-		TILE_ARRAY[1][col].currentrow = 1
-		TILE_ARRAY[1][col].currentcolumn = col
-		TILE_ARRAY[0][col] = tempTile[0]
-		TILE_ARRAY[0][col].currentrow = 0
-		TILE_ARRAY[0][col].currentcolumn = col
-		print(floatingTile[0])
-	if row == 6:
-		tempTile[0] = floatingTile[0]
-		floatingTile[0] = TILE_ARRAY[0][col]
-		TILE_ARRAY[0][col] = TILE_ARRAY[1][col]
-		TILE_ARRAY[0][col].currentrow = 0
-		TILE_ARRAY[0][col].currentcolumn = col
-		TILE_ARRAY[1][col] = TILE_ARRAY[2][col]
-		TILE_ARRAY[1][col].currentrow = 1
-		TILE_ARRAY[1][col].currentcolumn = col
-		TILE_ARRAY[2][col] = TILE_ARRAY[3][col]
-		TILE_ARRAY[2][col].currentrow = 2
-		TILE_ARRAY[2][col].currentcolumn = col
-		TILE_ARRAY[3][col] = TILE_ARRAY[4][col]
-		TILE_ARRAY[3][col].currentrow = 3
-		TILE_ARRAY[3][col].currentcolumn = col
-		TILE_ARRAY[4][col] = TILE_ARRAY[5][col]
-		TILE_ARRAY[4][col].currentrow = 4
-		TILE_ARRAY[4][col].currentcolumn = col
-		TILE_ARRAY[5][col] = TILE_ARRAY[6][col]
-		TILE_ARRAY[5][col].currentrow = 5
-		TILE_ARRAY[5][col].currentcolumn = col
-		TILE_ARRAY[6][col] = tempTile[0]
-		TILE_ARRAY[6][col].currentrow = 6
-		TILE_ARRAY[6][col].currentcolumn = col
-		print(floatingTile[0])
-	if col == 0:
-		tempTile[0] = floatingTile[0]
-		floatingTile[0] = TILE_ARRAY[row][6]
-		TILE_ARRAY[row][6] = TILE_ARRAY[row][5]
-		TILE_ARRAY[row][6].currentrow = row
-		TILE_ARRAY[row][6].currentcolumn = 6
-		TILE_ARRAY[row][5] = TILE_ARRAY[row][4]
-		TILE_ARRAY[row][5].currentrow = row
-		TILE_ARRAY[row][5].currentcolumn = 5
-		TILE_ARRAY[row][4] = TILE_ARRAY[row][3]
-		TILE_ARRAY[row][4].currentrow = row
-		TILE_ARRAY[row][4].currentcolumn = 4
-		TILE_ARRAY[row][3] = TILE_ARRAY[row][2]
-		TILE_ARRAY[row][3].currentrow = row
-		TILE_ARRAY[row][3].currentcolumn = 3
-		TILE_ARRAY[row][2] = TILE_ARRAY[row][1]
-		TILE_ARRAY[row][2].currentrow = row
-		TILE_ARRAY[row][2].currentcolumn = 2
-		TILE_ARRAY[row][1] = TILE_ARRAY[row][0]
-		TILE_ARRAY[row][1].currentrow = row
-		TILE_ARRAY[row][1].currentcolumn = 1
-		TILE_ARRAY[row][0] = tempTile[0]
-		TILE_ARRAY[row][0].currentrow = row
-		TILE_ARRAY[row][0].currentcolumn = 0
-		print(floatingTile[0])
-	if col == 6:
-		tempTile[0] = floatingTile[0]
-		floatingTile[0] = TILE_ARRAY[row][0]
-		TILE_ARRAY[row][0] = TILE_ARRAY[row][1]
-		TILE_ARRAY[row][0].currentrow = row
-		TILE_ARRAY[row][0].currentcolumn = 0
-		TILE_ARRAY[row][1] = TILE_ARRAY[row][2]
-		TILE_ARRAY[row][1].currentrow = row
-		TILE_ARRAY[row][1].currentcolumn = 1
-		TILE_ARRAY[row][2] = TILE_ARRAY[row][3]
-		TILE_ARRAY[row][2].currentrow = row
-		TILE_ARRAY[row][2].currentcolumn = 2
-		TILE_ARRAY[row][3] = TILE_ARRAY[row][4]
-		TILE_ARRAY[row][3].currentrow = row
-		TILE_ARRAY[row][3].currentcolumn = 3
-		TILE_ARRAY[row][4] = TILE_ARRAY[row][5]
-		TILE_ARRAY[row][4].currentrow = row
-		TILE_ARRAY[row][4].currentcolumn = 4
-		TILE_ARRAY[row][5] = TILE_ARRAY[row][6]
-		TILE_ARRAY[row][5].currentrow = row
-		TILE_ARRAY[row][5].currentcolumn = 5
-		TILE_ARRAY[row][6] = tempTile[0]
-		TILE_ARRAY[row][6].currentrow = row
-		TILE_ARRAY[row][6].currentcolumn = 6
-		print(floatingTile[0])
+	if player.TileInserted is 0:
+		if row == 0:
+			tempTile[0] = floatingTile[0]
+			floatingTile[0] = TILE_ARRAY[6][col]#I may want to clear the floatingTile's currentrow and currentcolumn here if it become a problem
+			TILE_ARRAY[6][col] = TILE_ARRAY[5][col]
+			TILE_ARRAY[6][col].currentrow = 6
+			TILE_ARRAY[6][col].currentcolumn = col
+			TILE_ARRAY[5][col] = TILE_ARRAY[4][col]
+			TILE_ARRAY[5][col].currentrow = 5
+			TILE_ARRAY[5][col].currentcolumn = col
+			TILE_ARRAY[4][col] = TILE_ARRAY[3][col]
+			TILE_ARRAY[4][col].currentrow = 4
+			TILE_ARRAY[4][col].currentcolumn = col
+			TILE_ARRAY[3][col] = TILE_ARRAY[2][col]
+			TILE_ARRAY[3][col].currentrow = 3
+			TILE_ARRAY[3][col].currentcolumn = col
+			TILE_ARRAY[2][col] = TILE_ARRAY[1][col]
+			TILE_ARRAY[2][col].currentrow = 2
+			TILE_ARRAY[2][col].currentcolumn = col
+			TILE_ARRAY[1][col] = TILE_ARRAY[0][col]
+			TILE_ARRAY[1][col].currentrow = 1
+			TILE_ARRAY[1][col].currentcolumn = col
+			TILE_ARRAY[0][col] = tempTile[0]
+			TILE_ARRAY[0][col].currentrow = 0
+			TILE_ARRAY[0][col].currentcolumn = col
+			print(floatingTile[0])
+		if row == 6:
+			tempTile[0] = floatingTile[0]
+			floatingTile[0] = TILE_ARRAY[0][col]
+			TILE_ARRAY[0][col] = TILE_ARRAY[1][col]
+			TILE_ARRAY[0][col].currentrow = 0
+			TILE_ARRAY[0][col].currentcolumn = col
+			TILE_ARRAY[1][col] = TILE_ARRAY[2][col]
+			TILE_ARRAY[1][col].currentrow = 1
+			TILE_ARRAY[1][col].currentcolumn = col
+			TILE_ARRAY[2][col] = TILE_ARRAY[3][col]
+			TILE_ARRAY[2][col].currentrow = 2
+			TILE_ARRAY[2][col].currentcolumn = col
+			TILE_ARRAY[3][col] = TILE_ARRAY[4][col]
+			TILE_ARRAY[3][col].currentrow = 3
+			TILE_ARRAY[3][col].currentcolumn = col
+			TILE_ARRAY[4][col] = TILE_ARRAY[5][col]
+			TILE_ARRAY[4][col].currentrow = 4
+			TILE_ARRAY[4][col].currentcolumn = col
+			TILE_ARRAY[5][col] = TILE_ARRAY[6][col]
+			TILE_ARRAY[5][col].currentrow = 5
+			TILE_ARRAY[5][col].currentcolumn = col
+			TILE_ARRAY[6][col] = tempTile[0]
+			TILE_ARRAY[6][col].currentrow = 6
+			TILE_ARRAY[6][col].currentcolumn = col
+			print(floatingTile[0])
+		if col == 0:
+			tempTile[0] = floatingTile[0]
+			floatingTile[0] = TILE_ARRAY[row][6]
+			TILE_ARRAY[row][6] = TILE_ARRAY[row][5]
+			TILE_ARRAY[row][6].currentrow = row
+			TILE_ARRAY[row][6].currentcolumn = 6
+			TILE_ARRAY[row][5] = TILE_ARRAY[row][4]
+			TILE_ARRAY[row][5].currentrow = row
+			TILE_ARRAY[row][5].currentcolumn = 5
+			TILE_ARRAY[row][4] = TILE_ARRAY[row][3]
+			TILE_ARRAY[row][4].currentrow = row
+			TILE_ARRAY[row][4].currentcolumn = 4
+			TILE_ARRAY[row][3] = TILE_ARRAY[row][2]
+			TILE_ARRAY[row][3].currentrow = row
+			TILE_ARRAY[row][3].currentcolumn = 3
+			TILE_ARRAY[row][2] = TILE_ARRAY[row][1]
+			TILE_ARRAY[row][2].currentrow = row
+			TILE_ARRAY[row][2].currentcolumn = 2
+			TILE_ARRAY[row][1] = TILE_ARRAY[row][0]
+			TILE_ARRAY[row][1].currentrow = row
+			TILE_ARRAY[row][1].currentcolumn = 1
+			TILE_ARRAY[row][0] = tempTile[0]
+			TILE_ARRAY[row][0].currentrow = row
+			TILE_ARRAY[row][0].currentcolumn = 0
+			print(floatingTile[0])
+		if col == 6:
+			tempTile[0] = floatingTile[0]
+			floatingTile[0] = TILE_ARRAY[row][0]
+			TILE_ARRAY[row][0] = TILE_ARRAY[row][1]
+			TILE_ARRAY[row][0].currentrow = row
+			TILE_ARRAY[row][0].currentcolumn = 0
+			TILE_ARRAY[row][1] = TILE_ARRAY[row][2]
+			TILE_ARRAY[row][1].currentrow = row
+			TILE_ARRAY[row][1].currentcolumn = 1
+			TILE_ARRAY[row][2] = TILE_ARRAY[row][3]
+			TILE_ARRAY[row][2].currentrow = row
+			TILE_ARRAY[row][2].currentcolumn = 2
+			TILE_ARRAY[row][3] = TILE_ARRAY[row][4]
+			TILE_ARRAY[row][3].currentrow = row
+			TILE_ARRAY[row][3].currentcolumn = 3
+			TILE_ARRAY[row][4] = TILE_ARRAY[row][5]
+			TILE_ARRAY[row][4].currentrow = row
+			TILE_ARRAY[row][4].currentcolumn = 4
+			TILE_ARRAY[row][5] = TILE_ARRAY[row][6]
+			TILE_ARRAY[row][5].currentrow = row
+			TILE_ARRAY[row][5].currentcolumn = 5
+			TILE_ARRAY[row][6] = tempTile[0]
+			TILE_ARRAY[row][6].currentrow = row
+			TILE_ARRAY[row][6].currentcolumn = 6
+			print(floatingTile[0])
+		player.TileInserted = 1
+		player.PathFound = 0
+		player.update_player(display)
 
 
 def new_tile_initialization(TILE_ARRAY, floatingTile):
@@ -425,7 +429,7 @@ def find_path(tile, Array):
 		find_path(WTile, Array)
 
 
-def color_untravelable_path(Array, display):
+def color_untravelable_path(player, Array, display):
 	for x in range(7):
 		for y in range(7):
 			if Array[x][y].travelable is 0:
@@ -433,24 +437,8 @@ def color_untravelable_path(Array, display):
 				display.blit(Array[x][y].image, (get_tile_coordinates(y, x)))
 			if Array[x][y].treasure is not 0:
 					display.blit((pygame.image.load(Array[x][y].treasure_image)), (get_tile_coordinates(y, x)))
+	player.PathFound = 1
 
-
-def move_player(tile, Array, display, PlayerPos):	
-	if tile.travelable is 1:
-		if tile.treasure is not 0:
-			treasure_found(tile, display)
-		for x in range(7):
-			for y in range(7):
-				Array[y][x].get_image_filepath()
-				Array[y][x].draw(display, (get_tile_coordinates(x, y)))
-				Array[y][x].travelable = 0
-				Array[y][x].p1 = 0
-				if Array[y][x].treasure is not 0:
-					display.blit((pygame.image.load(Array[y][x].treasure_image)), (get_tile_coordinates(x, y)))
-		display.blit(pygame.image.load(r'LabyrinthPlayerOneT.png'), (get_tile_coordinates(tile.currentcolumn, tile.currentrow)))
-		tile.p1 = 1
-		PlayerPos = tile
-		print("Player moved to", tile.currentcolumn, tile.currentrow)
 
 def treasure_found(tile, display):
 	#incrememnt player score
@@ -459,9 +447,9 @@ def treasure_found(tile, display):
 
 
 def init_treasures(Array, display):
-	for j in range(24): #Randomize the location of all 24 treasures into the array
-		y = random.randint(0,6)
-		x = random.randint(0,6)
+	for z in range(24): #Randomize the location of all 24 treasures into the array
+		y = random.randint(1,6)
+		x = random.randint(1,6)
 		if Array[y][x].treasure is 0:
 			Array[y][x].treasure = random.randint(1,7) #Randomize each treasure as one of four images
 			if Array[y][x].treasure is 1:
