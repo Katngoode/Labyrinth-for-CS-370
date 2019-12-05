@@ -1,3 +1,4 @@
+
 #CS370
 #Labyrinth
 
@@ -121,3 +122,4 @@ def main_game(display):
 		pygame.display.flip()
 
 	pygame.quit()#deactivates the pygame library
+
