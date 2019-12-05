@@ -8,7 +8,9 @@ from Sprite import *
 from Labyrinth_Main import main_game
 from Labyrinth_Client import establish_connection
 
-
+w, h = pygame.display.get_surface().get_size()
+print(w)
+print(h)
 
 #Global Colors used
 WHITE = (255,255,255)
@@ -18,7 +20,6 @@ BLACK = (0, 0, 0)
 #Init clock
 clock = pygame.time.Clock()
 
-        
 #Main function to track gamestate
 def main():
 	pygame.init()
@@ -27,11 +28,13 @@ def main():
 	game_state = GameState.TITLE
 
 	#Screen dimensions
-	width = 1280
-	height = 960
+	#width = 1280
+	#height = 960
 
 	#Set Screen dimensions and caption
-	screen = pygame.display.set_mode((width, height))
+	#screen = pygame.display.set_mode((width, height))
+	screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+
 	pygame.display.set_caption("Labyrinth")
 
 	#Begin music loop
@@ -65,7 +68,8 @@ def title_screen(screen):
 
 	#Create Rules Button
 	rules_btn = UIElement(
-		center_position=(640, 500),
+		#center_position=(640, 500),
+		center_position=(w/2, h/2),
 		font_size=30,
 		bg_rgb= BLACK,
 		text_rgb= WHITE,
@@ -75,7 +79,7 @@ def title_screen(screen):
 
 	#Create Start Game Button
 	start_btn = UIElement(
-		center_position=(640, 575),
+		center_position=(w/2, h/1.8),
 		font_size=30,
 		bg_rgb= BLACK,
 		text_rgb= WHITE,
@@ -85,17 +89,17 @@ def title_screen(screen):
 
 	#Create Quit Game Button
 	quit_btn = UIElement(
-		center_position=(640, 725),
+		center_position=(w/2, h/1.5),
 		font_size=30,
 		bg_rgb= BLACK,
 		text_rgb= WHITE,
 		text= "Quit",
 		action= GameState.QUIT,
 	)
-    
+	
 	#Create Quit Game Button
 	connect_btn = UIElement(
-		center_position=(640, 650),
+		center_position=(w/2, h/1.65),
 		font_size=30,
 		bg_rgb= BLACK,
 		text_rgb= WHITE,
@@ -121,7 +125,9 @@ def title_screen(screen):
 
 		#Set and display Logo
 		logo = pygame.image.load(r'Main_Logo.png')
-		screen.blit(logo, (118, 115))
+		rect = logo.get_rect()
+		rect.center = (w/2 - 522.5, h/2.9 - 132)
+		screen.blit(logo, rect.center)
 
 
 		#Draw and update buttons
@@ -143,7 +149,7 @@ def rules_screen(screen):
 
 		#Create Return Button
 		return_btn = UIElement(
-		center_position=(640, 575),
+		center_position=(w/2, h/2),
 		font_size=30,
 		bg_rgb= BLACK,
 		text_rgb= WHITE,
@@ -155,7 +161,7 @@ def rules_screen(screen):
 		screen.fill(BLACK)
 
 		rules_image = pygame.image.load(r'Rules.png')
-		screen.blit(rules_image, (196, 115))
+		screen.blit(rules_image, (w/2 - 300, h/2.8 - 109))
 
 		mouse_up = False
 		for event in pygame.event.get():
@@ -173,17 +179,17 @@ def rules_screen(screen):
 		#Set to 60 FPS
 		clock.tick(60)
 		pygame.display.flip()
-        
-        
+		
+		
 def connect_screen(screen):
-	ip_text_box = Input_Text_Box.input_text_box(screen, 500, 500, 300, 30, WHITE)
-	port_text_box = Input_Text_Box.input_text_box(screen, 500, 450, 300, 30, WHITE)
+	ip_text_box = Input_Text_Box.input_text_box(screen, w/2 - 150, h/2.48 - 15, 300, 30, WHITE)
+	port_text_box = Input_Text_Box.input_text_box(screen, w/2 - 150, h/2.275 - 15, 300, 30, WHITE)
 
 	while True:
 
 		#Create Return Button
 		return_btn = UIElement(
-		center_position=(640, 725),
+		center_position=(w/2, h/1.7),
 		font_size=30,
 		bg_rgb= BLACK,
 		text_rgb= WHITE,
@@ -192,7 +198,7 @@ def connect_screen(screen):
 		)
 
 		connect_info = UIElement(
-		center_position=(640, 400),
+		center_position=(w/2, h/2.75),
 		font_size=30,
 		bg_rgb= BLACK,
 		text_rgb= WHITE,
@@ -201,7 +207,7 @@ def connect_screen(screen):
 		)
 
 		IP_info = UIElement(
-		center_position=(450, 450),
+		center_position=(w/2.45, h/2.5),
 		font_size=30,
 		bg_rgb= BLACK,
 		text_rgb= WHITE,
@@ -210,34 +216,34 @@ def connect_screen(screen):
 		)
 
 		PORT_info = UIElement(
-		center_position=(430, 510),
+		center_position=(w/2.505, h/2.29),
 		font_size=30,
 		bg_rgb= BLACK,
 		text_rgb= WHITE,
 		text="PORT:",
 		action= GameState.TITLE,
 		)
-        
+		
 		IP_string = UIElement(
-		center_position=(650, 515),
+		center_position=(w/2, h/2.48),
 		font_size=30,
 		bg_rgb= WHITE,
 		text_rgb= BLACK,
 		text= ip_text_box.Fetch_string(),
 		action= GameState.TITLE,
 		)
-        
+		
 		PORT_string = UIElement(
-		center_position=(650, 465),
+		center_position=(w/2, h/2.275),
 		font_size=30,
 		bg_rgb= WHITE,
 		text_rgb= BLACK,
 		text= port_text_box.Fetch_string(),
 		action= GameState.TITLE,
 		)
-        
+		
 		connect_server = UIElement(
-		center_position=(650, 650),
+		center_position=(w/2, h/1.9),
 		font_size=30,
 		bg_rgb= BLACK,
 		text_rgb= WHITE,

@@ -11,13 +11,13 @@ class Tile:#create class for tiles characteristics
 		self.south = south
 		self.west = west
 		#A property to store whether the tile has a treasure, when we implement separate treasures we can have this store the specific treasure name/number
-
 		self.p1 = 0 #Stores whether player1 is on the tile, we can add additional properties when we start dealing with multiple players
 		self.currentrow = row
 		self.currentcolumn = column
 		self.image = ""
 		self.travelable = 0 #A property to tell whether or not the tile is travelable to
-
+		self.treasure = 0 #A property to tell whether or not there is a treasure on this tile
+		self.treasure_image = ""
 
 
 
