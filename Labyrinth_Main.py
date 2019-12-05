@@ -37,7 +37,8 @@ allImageFilesPaths = []
 
 
 TILE_ARRAY = numpy.ndarray(shape=(7,7), dtype=object)
-new_tile_initialization(TILE_ARRAY)
+floatingTile = []
+new_tile_initialization(TILE_ARRAY, floatingTile)
 
 Player = TILE_ARRAY[3][3] #Placeholder for player class
 

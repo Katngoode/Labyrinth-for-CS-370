@@ -39,8 +39,9 @@ def get_tile_coordinates(row, col):#Function which takes in column and row and r
 				#print(coords)
 				return(coords)
 
-def grab_and_place_arrows(display):#Function which grabs images of arrows and puts them in positions around board
+def grab_and_place_arrows(display, TILE_ARRAY, floatingTile):#Function which grabs images of arrows and puts them in positions around board
 	mouse = pygame.mouse.get_pos()#Stores position of mouse	
+	click = pygame.mouse.get_pressed()
 
 	arrowDownIC = pygame.image.load("ArrowDownIC.png")
 	arrowDownAC = pygame.image.load("ArrowDownAC.png")
@@ -54,61 +55,85 @@ def grab_and_place_arrows(display):#Function which grabs images of arrows and pu
 
 	if 400 + 100 > mouse[0] > 400 and 0 + 100 > mouse[1] > 20:#If mouse hovers, then changes image
 		display.blit(arrowDownAC, (435, 70))
+		if click[0] == 1:
+			tile_insertion(TILE_ARRAY, floatingTile, 0, 1)
 	else:
 		display.blit(arrowDownIC, (435, 35))
 
 	if 600 + 100 > mouse[0] > 600 and 0 + 100 > mouse[1] > 20:
 		display.blit(arrowDownAC, (635, 70))
+		if click[0] == 1:
+			tile_insertion(TILE_ARRAY, floatingTile, 0, 3)
 	else:
 		display.blit(arrowDownIC, (635, 35))
 
 	if 800 + 100 > mouse[0] > 800 and 0 + 100 > mouse[1] > 20:
 		display.blit(arrowDownAC, (835, 70))
+		if click[0] == 1:
+			tile_insertion(TILE_ARRAY, floatingTile, 0, 5)
 	else:
 		display.blit(arrowDownIC, (835, 35))
 
 	if 400 + 100 > mouse[0] > 400 and 780 + 100 > mouse[1] > 800:
 		display.blit(arrowUPAC, (435, 800))
+		if click[0] == 1:
+			tile_insertion(TILE_ARRAY, floatingTile, 6, 1)
 	else:
 		display.blit(arrowUPIC, (435, 835))
 
 	if 600 + 100 > mouse[0] > 600 and 780 + 100 > mouse[1] > 800:
 		display.blit(arrowUPAC, (635, 800))
+		if click[0] == 1:
+			tile_insertion(TILE_ARRAY, floatingTile, 6, 3)
 	else:
 		display.blit(arrowUPIC, (635, 835))
 
 	if 800 + 100 > mouse[0] > 800 and 780 + 100 > mouse[1] > 800:
 		display.blit(arrowUPAC, (835, 800))
+		if click[0] == 1:
+			tile_insertion(TILE_ARRAY, floatingTile, 6, 5)
 	else:
 		display.blit(arrowUPIC, (835, 835))
 
 	if 200 + 100 > mouse[0] > 220 and 200 + 100 > mouse[1] > 200:
 		display.blit(arrowRightAC, (273, 235))
+		if click[0] == 1:
+			tile_insertion(TILE_ARRAY, floatingTile, 1, 0)
 	else:
 		display.blit(arrowRightIC, (238, 235))
 
 	if 200 + 100 > mouse[0] > 220 and 400 + 100 > mouse[1] > 400:
 		display.blit(arrowRightAC, (273, 435))
+		if click[0] == 1:
+			tile_insertion(TILE_ARRAY, floatingTile, 3, 0)
 	else:
 		display.blit(arrowRightIC, (238, 435))
 
 	if 200 + 100 > mouse[0] > 220 and 600 + 100 > mouse[1] > 600:
 		display.blit(arrowRightAC, (273, 635))
+		if click[0] == 1:
+			tile_insertion(TILE_ARRAY, floatingTile, 5, 0)
 	else:
 		display.blit(arrowRightIC, (238, 635))
 
 	if 980 + 100 > mouse[0] > 1000 and 200 + 100 > mouse[1] > 200:
 		display.blit(arrowLeftAC, (998, 235))
+		if click[0] == 1:
+			tile_insertion(TILE_ARRAY, floatingTile, 1, 6)
 	else:
 		display.blit(arrowLeftIC, (1033, 235))
 
 	if 980 + 100 > mouse[0] > 1000 and 400 + 100 > mouse[1] > 400:
 		display.blit(arrowLeftAC, (998, 435))
+		if click[0] == 1:
+			tile_insertion(TILE_ARRAY, floatingTile, 3, 6)
 	else:
 		display.blit(arrowLeftIC, (1033, 435))
 
 	if 980 + 100 > mouse[0] > 1000 and 600 + 100 > mouse[1] > 600:
 		display.blit(arrowLeftAC, (998, 635))
+		if click[0] == 1:
+			tile_insertion(TILE_ARRAY, floatingTile, 5, 6)
 	else:
 		display.blit(arrowLeftIC, (1033, 635))
 
@@ -164,8 +189,106 @@ def rotate_tile_clockwise(tile):
 	tile.south = tile.east
 	tile.east = tilevalue
 
-
-def new_tile_initialization(TILE_ARRAY):
+def tile_insertion(TILE_ARRAY, floatingTile, row, col):#row and col of location where tile is being inserted
+	tempTile = [0]
+	if row == 0:
+		tempTile[0] = floatingTile[0]
+		floatingTile[0] = TILE_ARRAY[6][col]#I may want to clear the floatingTile's currentrow and currentcolumn here if it become a problem
+		TILE_ARRAY[6][col] = TILE_ARRAY[5][col]
+		TILE_ARRAY[6][col].currentrow = 6
+		TILE_ARRAY[6][col].currentcolumn = col
+		TILE_ARRAY[5][col] = TILE_ARRAY[4][col]
+		TILE_ARRAY[5][col].currentrow = 5
+		TILE_ARRAY[5][col].currentcolumn = col
+		TILE_ARRAY[4][col] = TILE_ARRAY[3][col]
+		TILE_ARRAY[4][col].currentrow = 4
+		TILE_ARRAY[4][col].currentcolumn = col
+		TILE_ARRAY[3][col] = TILE_ARRAY[2][col]
+		TILE_ARRAY[3][col].currentrow = 3
+		TILE_ARRAY[3][col].currentcolumn = col
+		TILE_ARRAY[2][col] = TILE_ARRAY[1][col]
+		TILE_ARRAY[2][col].currentrow = 2
+		TILE_ARRAY[2][col].currentcolumn = col
+		TILE_ARRAY[1][col] = TILE_ARRAY[0][col]
+		TILE_ARRAY[1][col].currentrow = 1
+		TILE_ARRAY[1][col].currentcolumn = col
+		TILE_ARRAY[0][col] = tempTile[0]
+		TILE_ARRAY[0][col].currentrow = 0
+		TILE_ARRAY[0][col].currentcolumn = col
+	if row == 6:
+		tempTile[0] = floatingTile[0]
+		floatingTile[0] = TILE_ARRAY[0][col]
+		TILE_ARRAY[0][col] = TILE_ARRAY[1][col]
+		TILE_ARRAY[0][col].currentrow = 0
+		TILE_ARRAY[0][col].currentcolumn = col
+		TILE_ARRAY[1][col] = TILE_ARRAY[2][col]
+		TILE_ARRAY[1][col].currentrow = 1
+		TILE_ARRAY[1][col].currentcolumn = col
+		TILE_ARRAY[2][col] = TILE_ARRAY[3][col]
+		TILE_ARRAY[2][col].currentrow = 2
+		TILE_ARRAY[2][col].currentcolumn = col
+		TILE_ARRAY[3][col] = TILE_ARRAY[4][col]
+		TILE_ARRAY[3][col].currentrow = 3
+		TILE_ARRAY[3][col].currentcolumn = col
+		TILE_ARRAY[4][col] = TILE_ARRAY[5][col]
+		TILE_ARRAY[4][col].currentrow = 4
+		TILE_ARRAY[4][col].currentcolumn = col
+		TILE_ARRAY[5][col] = TILE_ARRAY[6][col]
+		TILE_ARRAY[5][col].currentrow = 5
+		TILE_ARRAY[5][col].currentcolumn = col
+		TILE_ARRAY[6][col] = tempTile[0]
+		TILE_ARRAY[6][col].currentrow = 6
+		TILE_ARRAY[6][col].currentcolumn = col
+	if col == 0:
+		tempTile[0] = floatingTile[0]
+		floatingTile[0] = TILE_ARRAY[row][6]
+		TILE_ARRAY[row][6] = TILE_ARRAY[row][5]
+		TILE_ARRAY[row][6].currentrow = row
+		TILE_ARRAY[row][6].currentcolumn = 6
+		TILE_ARRAY[row][5] = TILE_ARRAY[row][4]
+		TILE_ARRAY[row][5].currentrow = row
+		TILE_ARRAY[row][5].currentcolumn = 5
+		TILE_ARRAY[row][4] = TILE_ARRAY[row][3]
+		TILE_ARRAY[row][4].currentrow = row
+		TILE_ARRAY[row][4].currentcolumn = 4
+		TILE_ARRAY[row][3] = TILE_ARRAY[row][2]
+		TILE_ARRAY[row][3].currentrow = row
+		TILE_ARRAY[row][3].currentcolumn = 3
+		TILE_ARRAY[row][2] = TILE_ARRAY[row][1]
+		TILE_ARRAY[row][2].currentrow = row
+		TILE_ARRAY[row][2].currentcolumn = 2
+		TILE_ARRAY[row][1] = TILE_ARRAY[row][0]
+		TILE_ARRAY[row][1].currentrow = row
+		TILE_ARRAY[row][1].currentcolumn = 1
+		TILE_ARRAY[row][0] = tempTile[0]
+		TILE_ARRAY[row][0].currentrow = row
+		TILE_ARRAY[row][0].currentcolumn = 0
+	if col == 6:
+		tempTile[0] = floatingTile[0]
+		floatingTile[0] = TILE_ARRAY[row][0]
+		TILE_ARRAY[row][0] = TILE_ARRAY[row][1]
+		TILE_ARRAY[row][0].currentrow = row
+		TILE_ARRAY[row][0].currentcolumn = 0
+		TILE_ARRAY[row][1] = TILE_ARRAY[row][2]
+		TILE_ARRAY[row][1].currentrow = row
+		TILE_ARRAY[row][1].currentcolumn = 1
+		TILE_ARRAY[row][2] = TILE_ARRAY[row][3]
+		TILE_ARRAY[row][2].currentrow = row
+		TILE_ARRAY[row][2].currentcolumn = 2
+		TILE_ARRAY[row][3] = TILE_ARRAY[row][4]
+		TILE_ARRAY[row][3].currentrow = row
+		TILE_ARRAY[row][3].currentcolumn = 3
+		TILE_ARRAY[row][4] = TILE_ARRAY[row][5]
+		TILE_ARRAY[row][4].currentrow = row
+		TILE_ARRAY[row][4].currentcolumn = 4
+		TILE_ARRAY[row][5] = TILE_ARRAY[row][6]
+		TILE_ARRAY[row][5].currentrow = row
+		TILE_ARRAY[row][5].currentcolumn = 5
+		TILE_ARRAY[row][6] = tempTile[0]
+		TILE_ARRAY[row][6].currentrow = row
+		TILE_ARRAY[row][6].currentcolumn = 6
+	
+def new_tile_initialization(TILE_ARRAY, floatingTile):
 	#TILE_ARRAY = allFilePaths
 	#TILE_ARRAY = [[0 for x in range(7)] for x in range(7)]#Creates matrix to store tiles
 	#get_tile_coordinates(0, 0),STARTING01,
@@ -252,10 +375,10 @@ def new_tile_initialization(TILE_ARRAY):
 				TILE_ARRAY[row][column].currentrow = row
 				TILE_ARRAY[row][column].currentcolumn = column
 				del initializationList[0]
-
+	floatingTile.append(initializationList[0])
 	#print(TILE_ARRAY)#shows contents of tile_array
 
-	return TILE_ARRAY
+	return TILE_ARRAY, floatingTile
 
 
 def find_path(tile, Array):
