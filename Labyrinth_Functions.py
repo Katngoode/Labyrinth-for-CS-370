@@ -215,9 +215,7 @@ def tile_insertion(TILE_ARRAY, floatingTile, row, col):#row and col of location 
 		TILE_ARRAY[0][col] = tempTile[0]
 		TILE_ARRAY[0][col].currentrow = 0
 		TILE_ARRAY[0][col].currentcolumn = col
-
 		print(floatingTile[0])
-
 	if row == 6:
 		tempTile[0] = floatingTile[0]
 		floatingTile[0] = TILE_ARRAY[0][col]
@@ -242,9 +240,7 @@ def tile_insertion(TILE_ARRAY, floatingTile, row, col):#row and col of location 
 		TILE_ARRAY[6][col] = tempTile[0]
 		TILE_ARRAY[6][col].currentrow = 6
 		TILE_ARRAY[6][col].currentcolumn = col
-
 		print(floatingTile[0])
-
 	if col == 0:
 		tempTile[0] = floatingTile[0]
 		floatingTile[0] = TILE_ARRAY[row][6]
@@ -269,9 +265,7 @@ def tile_insertion(TILE_ARRAY, floatingTile, row, col):#row and col of location 
 		TILE_ARRAY[row][0] = tempTile[0]
 		TILE_ARRAY[row][0].currentrow = row
 		TILE_ARRAY[row][0].currentcolumn = 0
-
 		print(floatingTile[0])
-
 	if col == 6:
 		tempTile[0] = floatingTile[0]
 		floatingTile[0] = TILE_ARRAY[row][0]
@@ -296,9 +290,7 @@ def tile_insertion(TILE_ARRAY, floatingTile, row, col):#row and col of location 
 		TILE_ARRAY[row][6] = tempTile[0]
 		TILE_ARRAY[row][6].currentrow = row
 		TILE_ARRAY[row][6].currentcolumn = 6
-
 		print(floatingTile[0])
-
 
 
 def new_tile_initialization(TILE_ARRAY, floatingTile):
@@ -390,9 +382,7 @@ def new_tile_initialization(TILE_ARRAY, floatingTile):
 				del initializationList[0]
 	floatingTile.append(initializationList[0])
 	#print(TILE_ARRAY)#shows contents of tile_array
-
 	return TILE_ARRAY, floatingTile
-
 
 def find_path(tile, Array):
 
