@@ -5,7 +5,7 @@ import Input_Text_Box
 from enum import Enum
 from pygame.rect import Rect
 from Sprite import *
-from Labyrinth_Main import main_game
+from Labyrinth_Main import * #main_game
 from Labyrinth_Client import establish_connection
 
 w, h = pygame.display.get_surface().get_size()
@@ -48,6 +48,7 @@ def main():
 
 		if game_state == GameState.GAME:
 			game_state = main_game(screen)
+			game_state = end_game(screen)
 
 		if game_state == GameState.RULES:
 			game_state = rules_screen(screen)
@@ -58,10 +59,108 @@ def main():
 		if game_state == GameState.CONNECT_to_server:
 			game_state = establish_connection(ip_text_box.Fetch_string, port_text_box.Fetch_string)
 
+		if game_state == GameState.END:
+			game_state = end_game(screen)
+
 		if game_state == GameState.QUIT:
 			pygame.quit()
 			sys.exit()
 			return
+
+class CandyAnimation(pygame.sprite.Sprite):
+    def __init__(self, offset):
+        super(CandyAnimation, self).__init__()
+ 
+        self.images = []
+        self.images.append(pygame.image.load('ccmid.png'))
+        self.images.append(pygame.image.load('ccl1.png'))
+        self.images.append(pygame.image.load('ccl2.png'))
+        self.images.append(pygame.image.load('ccl3.png'))
+        self.images.append(pygame.image.load('ccl2.png'))
+        self.images.append(pygame.image.load('ccl1.png'))
+        self.images.append(pygame.image.load('ccmid.png'))
+        self.images.append(pygame.image.load('ccr1.png'))
+        self.images.append(pygame.image.load('ccr2.png'))
+        self.images.append(pygame.image.load('ccr3.png'))
+        self.images.append(pygame.image.load('ccr2.png'))
+        self.images.append(pygame.image.load('ccr1.png'))
+        self.images.append(pygame.image.load('ccmid.png'))
+        self.images.append(pygame.image.load('ccl1.png'))
+        self.images.append(pygame.image.load('ccl2.png'))
+        self.images.append(pygame.image.load('ccl3.png'))
+        self.images.append(pygame.image.load('ccl2.png'))
+        self.images.append(pygame.image.load('ccl1.png'))
+        self.images.append(pygame.image.load('ccmid.png'))
+        self.images.append(pygame.image.load('ccr1.png'))
+        self.images.append(pygame.image.load('ccr2.png'))
+        self.images.append(pygame.image.load('ccr3.png'))
+        self.images.append(pygame.image.load('ex1.png'))
+        self.images.append(pygame.image.load('ex2.png'))
+        self.images.append(pygame.image.load('ex3.png'))
+        self.images.append(pygame.image.load('ex4.png'))
+        self.images.append(pygame.image.load('ex5.png'))
+        self.images.append(pygame.image.load('blank.png'))
+ 
+        self.index = 0
+ 
+        self.image = self.images[self.index]
+ 
+        self.rect = pygame.Rect(w/2 +offset, h/2 - 150, 200, 200)
+ 
+    def update(self):
+        self.index += 1
+ 
+        if self.index >= len(self.images):
+            self.index = 0
+        
+        self.image = self.images[self.index]
+
+def end_game(screen):
+
+	CandiesRight = CandyAnimation(-500)
+	RightGroup = pygame.sprite.Group(CandiesRight)
+	CandiesLeft = CandyAnimation(300)
+	LeftGroup = pygame.sprite.Group(CandiesLeft)
+	clock = pygame.time.Clock()
+
+	while True:
+
+		screen.fill(BLACK)
+		#Create Return Button
+		return_btn = UIElement(
+		center_position=(w/2, h/2 + 136),
+		font_size=30,
+		bg_rgb= BLACK,
+		text_rgb= WHITE,
+		text="Return to Main Menu",
+		action= GameState.TITLE,
+		)
+
+		end_image = pygame.image.load(r'End.png')
+		screen.blit(end_image, (w/2 - 300, h/2 - 150))
+
+		RightGroup.update()
+		RightGroup.draw(screen)
+		LeftGroup.update()
+		LeftGroup.draw(screen)
+
+		mouse_up = False
+		for event in pygame.event.get():
+			if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
+				mouse_up = True
+			elif event.type == pygame.QUIT:
+				pygame.quit()
+				sys.exit()
+
+		ui_action = return_btn.update(pygame.mouse.get_pos(), mouse_up)
+		if ui_action is not None:
+			return ui_action
+		return_btn.draw(screen)
+
+		#Set to 60 FPS
+		clock.tick(15)
+		pygame.display.flip()
+
 
 #Main function of Title Screen
 def title_screen(screen):
@@ -149,7 +248,7 @@ def rules_screen(screen):
 
 		#Create Return Button
 		return_btn = UIElement(
-		center_position=(w/2, h/2),
+		center_position=(w/2, h/2 + 136),
 		font_size=30,
 		bg_rgb= BLACK,
 		text_rgb= WHITE,
@@ -161,7 +260,7 @@ def rules_screen(screen):
 		screen.fill(BLACK)
 
 		rules_image = pygame.image.load(r'Rules.png')
-		screen.blit(rules_image, (w/2 - 300, h/2.8 - 109))
+		screen.blit(rules_image, (w/2 - 278, h/2 - 151))
 
 		mouse_up = False
 		for event in pygame.event.get():
@@ -296,6 +395,7 @@ class GameState(Enum) :
 	RULES = 2
 	CONNECT = 3
 	CONNECT_to_server = 4
+	END = 5
 
 if __name__ == "__main__":
 	main()

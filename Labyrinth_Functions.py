@@ -54,133 +54,88 @@ def grab_and_place_arrows(display, TILE_ARRAY, floatingTile, player):#Function w
 
 
 	if 400 + 100 > mouse[0] > 400 and 0 + 100 > mouse[1] > 20:#If mouse hovers, then changes image
-		display.blit(arrowDownAC, (435, 70))
+		display.blit(arrowDownAC, (435, 35))
 		if click[0] == 1:
 			tile_insertion(TILE_ARRAY, floatingTile, 0, 1, player, display)
 	else:
 		display.blit(arrowDownIC, (435, 35))
 
 	if 600 + 100 > mouse[0] > 600 and 0 + 100 > mouse[1] > 20:
-		display.blit(arrowDownAC, (635, 70))
+		display.blit(arrowDownAC, (635, 35))
 		if click[0] == 1:
 			tile_insertion(TILE_ARRAY, floatingTile, 0, 3, player, display)
 	else:
 		display.blit(arrowDownIC, (635, 35))
 
 	if 800 + 100 > mouse[0] > 800 and 0 + 100 > mouse[1] > 20:
-		display.blit(arrowDownAC, (835, 70))
+		display.blit(arrowDownAC, (835, 35))
 		if click[0] == 1:
 			tile_insertion(TILE_ARRAY, floatingTile, 0, 5, player, display)
 	else:
 		display.blit(arrowDownIC, (835, 35))
 
 	if 400 + 100 > mouse[0] > 400 and 780 + 100 > mouse[1] > 800:
-		display.blit(arrowUPAC, (435, 800))
+		display.blit(arrowUPAC, (435, 835))
 		if click[0] == 1:
 			tile_insertion(TILE_ARRAY, floatingTile, 6, 1, player, display)
 	else:
 		display.blit(arrowUPIC, (435, 835))
 
 	if 600 + 100 > mouse[0] > 600 and 780 + 100 > mouse[1] > 800:
-		display.blit(arrowUPAC, (635, 800))
+		display.blit(arrowUPAC, (635, 835))
 		if click[0] == 1:
 			tile_insertion(TILE_ARRAY, floatingTile, 6, 3, player, display)
 	else:
 		display.blit(arrowUPIC, (635, 835))
 
 	if 800 + 100 > mouse[0] > 800 and 780 + 100 > mouse[1] > 800:
-		display.blit(arrowUPAC, (835, 800))
+		display.blit(arrowUPAC, (835, 835))
 		if click[0] == 1:
 			tile_insertion(TILE_ARRAY, floatingTile, 6, 5, player, display)
 	else:
 		display.blit(arrowUPIC, (835, 835))
 
 	if 200 + 100 > mouse[0] > 220 and 200 + 100 > mouse[1] > 200:
-		display.blit(arrowRightAC, (273, 235))
+		display.blit(arrowRightAC, (238, 235))
 		if click[0] == 1:
 			tile_insertion(TILE_ARRAY, floatingTile, 1, 0, player, display)
 	else:
 		display.blit(arrowRightIC, (238, 235))
 
 	if 200 + 100 > mouse[0] > 220 and 400 + 100 > mouse[1] > 400:
-		display.blit(arrowRightAC, (273, 435))
+		display.blit(arrowRightAC, (238, 435))
 		if click[0] == 1:
 			tile_insertion(TILE_ARRAY, floatingTile, 3, 0, player, display)
 	else:
 		display.blit(arrowRightIC, (238, 435))
 
 	if 200 + 100 > mouse[0] > 220 and 600 + 100 > mouse[1] > 600:
-		display.blit(arrowRightAC, (273, 635))
+		display.blit(arrowRightAC, (238, 635))
 		if click[0] == 1:
 			tile_insertion(TILE_ARRAY, floatingTile, 5, 0, player, display)
 	else:
 		display.blit(arrowRightIC, (238, 635))
 
 	if 980 + 100 > mouse[0] > 1000 and 200 + 100 > mouse[1] > 200:
-		display.blit(arrowLeftAC, (998, 235))
+		display.blit(arrowLeftAC, (1033, 235))
 		if click[0] == 1:
 			tile_insertion(TILE_ARRAY, floatingTile, 1, 6, player, display)
 	else:
 		display.blit(arrowLeftIC, (1033, 235))
 
 	if 980 + 100 > mouse[0] > 1000 and 400 + 100 > mouse[1] > 400:
-		display.blit(arrowLeftAC, (998, 435))
+		display.blit(arrowLeftAC, (1033, 435))
 		if click[0] == 1:
 			tile_insertion(TILE_ARRAY, floatingTile, 3, 6, player, display)
 	else:
 		display.blit(arrowLeftIC, (1033, 435))
 
 	if 980 + 100 > mouse[0] > 1000 and 600 + 100 > mouse[1] > 600:
-		display.blit(arrowLeftAC, (998, 635))
+		display.blit(arrowLeftAC, (1033, 635))
 		if click[0] == 1:
 			tile_insertion(TILE_ARRAY, floatingTile, 5, 6, player, display)
 	else:
 		display.blit(arrowLeftIC, (1033, 635))
-
-def grab_and_place_movement_keys(display):#Function which grabs images of movement keys and places them in correct positions
-	mouse = pygame.mouse.get_pos()#Stores position of mouse	
-	click = pygame.mouse.get_pressed()
-
-	moveUpIC = pygame.image.load("moveUpIC.png")
-	moveRightIC = pygame.image.load("moveRightIC.png")
-	moveDownIC = pygame.image.load("moveDownIC.png")
-	moveLeftIC = pygame.image.load("moveLeftIC.png")
-	moveUpAC = pygame.image.load("moveUpAC.png")
-	moveRightAC = pygame.image.load("moveRightAC.png")
-	moveDownAC = pygame.image.load("moveDownAC.png")
-	moveLeftAC = pygame.image.load("moveLeftAC.png")	
-
-	if 1110 + 45 > mouse[0] > 1125 and 800 + 60 > mouse[1] > 800:#If mouse clicks, then changes image
-		display.blit(moveUpIC, (1110, 800))
-		if click[0] == 1:
-			display.blit(moveUpAC, (1110, 800))
-	else:
-		display.blit(moveUpIC, (1110, 800))
-
-	if 1110 + 45 > mouse[0] > 1125 and 870 + 60 > mouse[1] > 870:
-		display.blit(moveDownIC, (1110, 870))
-		if click[0] == 1:
-			display.blit(moveDownAC, (1110, 870))
-	else:
-		display.blit(moveDownIC, (1110, 870))
-
-	if 1160 + 45 > mouse[0] > 1160 and 825 + 60 > mouse[1] > 845:
-		display.blit(moveRightIC, (1160, 835))
-		if click[0] == 1:
-			display.blit(moveRightAC, (1160, 835))
-	else:
-		display.blit(moveRightIC, (1160, 835))
-
-	if 1060 + 45 > mouse[0] > 1060 and 825 + 60 > mouse[1] > 845:
-		display.blit(moveLeftIC, (1060, 835))
-		if click[0] == 1:
-			display.blit(moveLeftAC, (1060, 835))
-	else:
-		display.blit(moveLeftIC, (1060, 835))
-
-#def get_image_filepath(tile):#Takes Tile class instance
-
-#	tile.image = ("%%%%.png" (tile.north, tile.east, tile.south, tile.west))#Make sure this matches the naming convention for tiles
 
 def rotate_tile_clockwise(tile):
 	tilevalue = tile.north
@@ -217,7 +172,10 @@ def tile_insertion(TILE_ARRAY, floatingTile, row, col, player, display):#row and
 			TILE_ARRAY[0][col].currentrow = 0
 			TILE_ARRAY[0][col].currentcolumn = col
 			print(floatingTile[0])
-		if row == 6:
+			if player.tile == floatingTile[0]:
+				player.tile = TILE_ARRAY[0][col]
+
+		elif row == 6:
 			tempTile[0] = floatingTile[0]
 			floatingTile[0] = TILE_ARRAY[0][col]
 			TILE_ARRAY[0][col] = TILE_ARRAY[1][col]
@@ -242,7 +200,10 @@ def tile_insertion(TILE_ARRAY, floatingTile, row, col, player, display):#row and
 			TILE_ARRAY[6][col].currentrow = 6
 			TILE_ARRAY[6][col].currentcolumn = col
 			print(floatingTile[0])
-		if col == 0:
+			if player.tile == floatingTile[0]:
+				player.tile = TILE_ARRAY[6][col]
+
+		elif col == 0:
 			tempTile[0] = floatingTile[0]
 			floatingTile[0] = TILE_ARRAY[row][6]
 			TILE_ARRAY[row][6] = TILE_ARRAY[row][5]
@@ -267,7 +228,10 @@ def tile_insertion(TILE_ARRAY, floatingTile, row, col, player, display):#row and
 			TILE_ARRAY[row][0].currentrow = row
 			TILE_ARRAY[row][0].currentcolumn = 0
 			print(floatingTile[0])
-		if col == 6:
+			if player.tile == floatingTile[0]:
+				player.tile = TILE_ARRAY[row][0]
+
+		elif col == 6:
 			tempTile[0] = floatingTile[0]
 			floatingTile[0] = TILE_ARRAY[row][0]
 			TILE_ARRAY[row][0] = TILE_ARRAY[row][1]
@@ -292,6 +256,9 @@ def tile_insertion(TILE_ARRAY, floatingTile, row, col, player, display):#row and
 			TILE_ARRAY[row][6].currentrow = row
 			TILE_ARRAY[row][6].currentcolumn = 6
 			print(floatingTile[0])
+			if player.tile == floatingTile[0]:
+				player.tile = TILE_ARRAY[row][6]
+
 		player.TileInserted = 1
 		player.PathFound = 0
 		player.update_player(display)
@@ -447,7 +414,8 @@ def treasure_found(tile, display):
 
 
 def init_treasures(Array, display):
-	for z in range(24): #Randomize the location of all 24 treasures into the array
+	tcount = 0
+	while tcount is not 24:
 		y = random.randint(1,6)
 		x = random.randint(1,6)
 		if Array[y][x].treasure is 0:
@@ -467,3 +435,51 @@ def init_treasures(Array, display):
 			else:
 				Array[y][x].treasure_image = "Treasure7.png"
 			display.blit((pygame.image.load(Array[y][x].treasure_image)), (get_tile_coordinates(x, y)))
+			tcount = tcount + 1
+
+#BIG CHUNK OF CODE that I'm like 90% sure we don't use but don't want to delete just in case
+
+#def grab_and_place_movement_keys(display):#Function which grabs images of movement keys and places them in correct positions
+#	mouse = pygame.mouse.get_pos()#Stores position of mouse	
+#	click = pygame.mouse.get_pressed()
+#
+#	moveUpIC = pygame.image.load("moveUpIC.png")
+#	moveRightIC = pygame.image.load("moveRightIC.png")
+#	moveDownIC = pygame.image.load("moveDownIC.png")
+#	moveLeftIC = pygame.image.load("moveLeftIC.png")
+#	moveUpAC = pygame.image.load("moveUpAC.png")
+#	moveRightAC = pygame.image.load("moveRightAC.png")
+#	moveDownAC = pygame.image.load("moveDownAC.png")
+#	moveLeftAC = pygame.image.load("moveLeftAC.png")	
+#
+#	if 1110 + 45 > mouse[0] > 1125 and 800 + 60 > mouse[1] > 800:#If mouse clicks, then changes image
+#		#display.blit(moveUpIC, (1110, 800))
+#		if click[0] == 1:
+#			display.blit(moveUpAC, (1110, 800))
+#	else:
+#		display.blit(moveUpIC, (1110, 800))
+#
+#	if 1110 + 45 > mouse[0] > 1125 and 870 + 60 > mouse[1] > 870:
+#		#display.blit(moveDownIC, (1110, 870))
+#		if click[0] == 1:
+#			display.blit(moveDownAC, (1110, 870))
+#	else:
+#		display.blit(moveDownIC, (1110, 870))
+#
+#	if 1160 + 45 > mouse[0] > 1160 and 825 + 60 > mouse[1] > 845:
+#		#display.blit(moveRightIC, (1160, 835))
+#		if click[0] == 1:
+#			display.blit(moveRightAC, (1160, 835))
+#	else:
+#		display.blit(moveRightIC, (1160, 835))
+#
+#	if 1060 + 45 > mouse[0] > 1060 and 825 + 60 > mouse[1] > 845:
+#		#display.blit(moveLeftIC, (1060, 835))
+#		if click[0] == 1:
+#			display.blit(moveLeftAC, (1060, 835))
+#	else:
+#		display.blit(moveLeftIC, (1060, 835))
+#
+#def get_image_filepath(tile):#Takes Tile class instance
+
+#	tile.image = ("%%%%.png" (tile.north, tile.east, tile.south, tile.west))#Make sure this matches the naming convention for tiles
